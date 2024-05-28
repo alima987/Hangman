@@ -1,6 +1,6 @@
 import './style.css';
 import gallows from './public/gallows.svg';
-import { quizQuestions } from './src/quizQuestions';
+
 const bodyStructure = () => {
   const html = `
   <header class="header">
@@ -11,6 +11,9 @@ const bodyStructure = () => {
 <img src="${gallows}" alt="gallow">
 </div>
 <div class="quiz">
+<div id="hint">
+
+</div>
 <div class="words">
 <ul class="word_letter">
 <li class='letter'></li>
@@ -23,14 +26,12 @@ const bodyStructure = () => {
 <li class='letter'></li>
 </ul>
 </div>
-<div class="hint">
-<p>Hint: Lorem ipsum is placeholder text commonly used in the graphic</p>
-</div>
 <div class="incorrect">
 <p>Incorrect guesses: 0/6</p>
 </div>
 <div id="virtual_keyboard">
 </div>
+<div id="reset"></div>
 </div>
 </div>
   `;

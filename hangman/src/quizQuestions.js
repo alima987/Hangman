@@ -1,3 +1,5 @@
+const hint = document.getElementById('hint');
+const reset = document.getElementById('reset');
 const quizQuestions = [
     {
         question: 'How many letters in the word hippopotamus?',
@@ -40,4 +42,21 @@ const quizQuestions = [
         answer: 'Nile'
     },
 ]
-export { quizQuestions }
+
+    const index = 0
+    const question = document.createElement('p');
+    question.classList.add('question')
+    hint.appendChild(question)
+
+const resetBtn = document.createElement('button')
+resetBtn.classList.add('resetBtn')
+resetBtn.textContent = 'Play Again'
+reset.appendChild(resetBtn)
+
+const changeQuestion = () => {
+    index++
+    index += quizQuestions.length
+    question.innerHTML = quizQuestions[index].question
+}
+resetBtn.addEventListener('click', changeQuestion)
+question.innerHTML = quizQuestions[0].question

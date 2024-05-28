@@ -53,17 +53,24 @@ h1 {
   width: 29px;
   border-bottom: 3px solid black;
 }
-.keys {
+#virtual_keyboard .keys {
   display: flex;
   list-style: none;
   gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .keys .key {
-    display: flex;
-    list-style: none;
-    gap: 10px;
-    flex-wrap: wrap;
-    white-space: pre-line;
+    width: calc(100% / 11 - 5px);
+}
+.question {
+  margin-bottom: 50px;
+}
+.words{
+  margin-bottom: 50px;
+}
+.incorrect {
+  margin-bottom: 50px;
 }
 button {
   border-radius: 8px;
