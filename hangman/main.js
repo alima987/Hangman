@@ -14,16 +14,8 @@ const bodyStructure = () => {
 <div id="hint">
 
 </div>
-<div class="words">
-<ul class="word_letter">
-<li class='letter'></li>
-<li class='letter'></li>
-<li class='letter'></li>
-<li class='letter'></li>
-<li class='letter'></li>
-<li class='letter'></li>
-<li class='letter'></li>
-<li class='letter'></li>
+<div id="words">
+<ul id="word_letter">
 </ul>
 </div>
 <div class="incorrect">

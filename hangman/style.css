@@ -44,12 +44,12 @@ h1 {
   justify-content: center;
   padding: 2rem;
 }
-.word_letter {
+#word_letter {
   display: flex;
   list-style: none;
   gap:10px;
 }
-.word_letter .letter {
+#word_letter .letter {
   width: 29px;
   border-bottom: 3px solid black;
 }
@@ -66,7 +66,7 @@ h1 {
 .question {
   margin-bottom: 50px;
 }
-.words{
+#words{
   margin-bottom: 50px;
 }
 .incorrect {
