@@ -47,42 +47,39 @@ const quizQuestions = [
 ]
 
     const index = 0
-    const question = document.createElement('p');
-    question.classList.add('question')
-    hint.appendChild(question)
 
 const resetBtn = document.createElement('button')
 resetBtn.classList.add('resetBtn')
 resetBtn.textContent = 'Play Again'
 reset.appendChild(resetBtn)
 
-const updateLetters = (answer) => {
+const randomizeWord = () => {
+    const { question, answer } = quizQuestions[Math.floor(Math.random() * quizQuestions.length)]
+    hint.innerText = question
+    wordsLetter.innerHTML = answer.split('').map(() => `<li class='letter'></li>`).join('');
+}
+
+/*const updateLetters = (answer) => {
     const answerLength = answer.length;
-    // Clear existing letters
     wordsLetter.innerHTML = '';
 
-    // Add new letters
     for (let i = 0; i < answerLength; i++) {
         const li = document.createElement('li');
         li.classList.add('letter');
         wordsLetter.appendChild(li);
     }
-};
-    console.log(updateLetters(length))
-const changeQuestion = () => {
+};*/
+
+/*const changeQuestion = () => {
     index++
     //index += quizQuestions.length
     index = (index + 1) % quizQuestions.length; 
     question.innerHTML = quizQuestions[index].question
     updateLetters(quizQuestions[index].answer);
-}
-/*const wordsLetter = document.createElement('ul')
-wordsLetter.id = "word_letter"
-words.appendChild(wordsLetter)*/
+}*/
 
+//resetBtn.addEventListener('click', changeQuestion)
+//question.innerHTML = quizQuestions[0].question;
+//updateLetters(quizQuestions[0].answer)
 
-resetBtn.addEventListener('click', changeQuestion)
-question.innerHTML = quizQuestions[0].question;
-updateLetters(quizQuestions[0].answer)
-
-
+randomizeWord()
