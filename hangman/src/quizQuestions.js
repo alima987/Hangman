@@ -1,63 +1,48 @@
-const hint = document.getElementById('hint');
-const reset = document.getElementById('reset');
-const words = document.getElementById('words');
-const wordsLetter = document.getElementById('word_letter');
-
 const quizQuestions = [
     {
         question: 'How many letters in the word hippopotamus?',
-        answer: 'Twelve'
+        answer: 'TWELVE'
     },
     {
         question: 'What is the national flower of Wales?',
-        answer: 'Daffodil'
+        answer: 'DAFFODIL'
     },
     {
         question: 'Which is the only word in the English language that has no true rhyme?',
-        answer: 'Orange'
+        answer: 'ORANGE'
     },
     {
         question: 'What plant do people traditionally kiss under at Christmas?',
-        answer: 'Mistletoe'
+        answer: 'MISTLETOE'
     },
     {
         question: 'What nut is used to make marzipan?',
-        answer: 'Almonds'
+        answer: 'ALMONDS'
     },
     {
         question: 'What vegetable is known as an egg plant in America?',
-        answer: 'Aubergine'
+        answer: 'AUBERGINE'
     },
     {
         question: `What's the Italian word for pie?`,
-        answer: 'Pizza'
+        answer: 'PIZZA'
     },
     {
         question: `What element does 'O' represent on the periodic table?`,
-        answer: 'Oxygen'
+        answer: 'OXYGEN'
     },
     {
         question: 'What is the smallest planet in our solar system?',
-        answer: 'Mercury'
+        answer: 'MERCURY'
     },
     {
         question: `What's the name of the river that runs through Egypt?`,
-        answer: 'Nile'
+        answer: 'NILE'
     },
 ]
+export { quizQuestions }
 
-    const index = 0
 
-const resetBtn = document.createElement('button')
-resetBtn.classList.add('resetBtn')
-resetBtn.textContent = 'Play Again'
-reset.appendChild(resetBtn)
-
-const randomizeWord = () => {
-    const { question, answer } = quizQuestions[Math.floor(Math.random() * quizQuestions.length)]
-    hint.innerText = question
-    wordsLetter.innerHTML = answer.split('').map(() => `<li class='letter'></li>`).join('');
-}
 
 /*const updateLetters = (answer) => {
     const answerLength = answer.length;
@@ -82,4 +67,4 @@ const randomizeWord = () => {
 //question.innerHTML = quizQuestions[0].question;
 //updateLetters(quizQuestions[0].answer)
 
-randomizeWord()
+
