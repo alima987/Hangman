@@ -2,10 +2,12 @@ import { quizQuestions } from "./quizQuestions";
 const hint = document.getElementById('hint');
 const reset = document.getElementById('reset');
 const words = document.getElementById('words');
+const incorrect = document.getElementById('incorrect');
 const wordsLetter = document.getElementById('word_letter');
 const keyboard_container = document.getElementById('virtual_keyboard');
 let currWord
 let correctLetters = []
+let counter = 0
 const { question, answer } = quizQuestions
 const keysLayout = [
     'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
@@ -14,6 +16,11 @@ const keysLayout = [
 ]
 const keys = document.createElement('ul');
     keys.classList.add('keys');
+
+const incorrectQuesses = document.createElement('p');
+incorrectQuesses.classList.add('incorrect_quesses')
+incorrectQuesses.innerHTML = `Incorrect guesses: ${counter}/6`
+incorrect.appendChild(incorrectQuesses)    
 const letterCheck = (letter, clickedLetter) => {
   if(currWord.includes(clickedLetter)) {
     console.log(clickedLetter, 'letter is existed')
@@ -21,6 +28,8 @@ const letterCheck = (letter, clickedLetter) => {
     console.log(correctLetters)
   } else {
     console.log(clickedLetter, 'letter is not existed')
+    counter++
+    incorrectQuesses.innerHTML = `Incorrect guesses: ${counter}/6`
   }
   letterDisplay()
   console.log(currWord)
@@ -29,8 +38,8 @@ const letterDisplay = () => {
   wordsLetter.innerHTML = currWord.split('').map((letter) => correctLetters.includes(letter) 
   ? `<li class='letter'>${letter}</li>`
   : `<li class='letter'></li>`).join('')
-  console.log(letter)
 }
+
 const randomizeWord = () => {
   const { question, answer } = quizQuestions[Math.floor(Math.random() * quizQuestions.length)]
   hint.innerText = question

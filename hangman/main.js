@@ -12,14 +12,12 @@ const bodyStructure = () => {
 </div>
 <div class="quiz">
 <div id="hint">
-
 </div>
 <div id="words">
 <ul id="word_letter">
 </ul>
 </div>
-<div class="incorrect">
-<p>Incorrect guesses: 0/6</p>
+<div id="incorrect">
 </div>
 <div id="virtual_keyboard">
 </div>
