@@ -6,7 +6,7 @@ const bodyStructure = () => {
   <header class="header">
   </header>
   <div class="container">
-<div class="gallow">
+<div id="gallow">
 <h2>Hangman Game</h2>
 <img src="${gallows}" alt="gallow">
 </div>

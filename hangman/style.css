@@ -75,6 +75,40 @@ h1 {
 #incorrect {
   margin-bottom: 50px;
 }
+#gallow {
+  position: relative;
+}
+.parts {
+  position: absolute;
+ 
+}
+.parts:nth-child(7) { 
+  top: 409px;
+  left: 67%;
+}
+.parts:nth-child(8) { 
+  top: 409px;
+  left: 85%;
+}
+.parts:nth-child(3) { 
+  top: 184px;
+  left: 71%;
+}
+
+.parts:nth-child(4) {
+  top: 281px;
+  left: 85%;
+}
+
+.parts:nth-child(5) { 
+  top: 320px;
+  left: 67%;
+}
+
+.parts:nth-child(6) { 
+  top: 320px;
+  left: 85%;
+}
 button {
   border-radius: 8px;
   border: 1px solid transparent;
