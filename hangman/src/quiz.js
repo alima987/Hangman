@@ -21,16 +21,20 @@ const keysLayout = [
     'Z', 'X', 'C', 'V', 'B', 'N', 'M'
 ]
 const gallowParts = [
-  head, body, handOne, handTwo, legOne, legTwo
-]
+  { id: 'head', src: head },
+  { id: 'body', src: body },
+  { id: 'handOne', src: handOne },
+  { id: 'handTwo', src: handTwo },
+  { id: 'legOne', src: legOne },
+  { id: 'legTwo', src: legTwo }
+];
 console.log(gallowParts)
 const createGallowParts = () => {
-  gallowParts.forEach((part, index) => {
+  gallowParts.forEach((part) => {
     const img = document.createElement('img');
-    img.src = part
-    img.alt = `Part ${part}`
-    img.classList.add('parts')
-    //img.style.display = 'none'
+    img.src = part.src
+    img.alt = `Part ${part.id}`
+    img.id = 'parts'
     gallow.appendChild(img)
   })
 }
@@ -40,8 +44,8 @@ const keys = document.createElement('ul');
 
 const incorrectQuesses = document.createElement('p');
 incorrectQuesses.classList.add('incorrect_quesses')
-incorrectQuesses.innerHTML = `Incorrect guesses: ${counter}/6`
-incorrect.appendChild(incorrectQuesses)    
+incorrect.appendChild(incorrectQuesses)  
+
 const letterCheck = (letter, clickedLetter) => {
   if(currWord.includes(clickedLetter)) {
     console.log(clickedLetter, 'letter is existed')
@@ -56,21 +60,27 @@ const letterCheck = (letter, clickedLetter) => {
   letterDisplay()
   console.log(currWord)
 }
+
 const letterDisplay = () => {
   wordsLetter.innerHTML = currWord.split('').map((letter) => correctLetters.includes(letter) 
   ? `<li class='letter'>${letter}</li>`
   : `<li class='letter'></li>`).join('')
 }
 const displayGallowParts = () => {
-  if(counter <= gallowParts.length) {
-    gallowParts[counter - 1].style.display = 'block'
-  }
+  const parts = document.getElementById('parts');
+  parts.forEach((part, index) => {
+    part.style.display = index < counter ? "block" : "none"
+  })
+  console.log("Parts:", parts)
 }
 const randomizeWord = () => {
   const { question, answer } = quizQuestions[Math.floor(Math.random() * quizQuestions.length)]
   hint.innerText = question
   currWord = answer
   correctLetters = []
+  counter = 0 
+  incorrectQuesses.innerHTML = `Incorrect guesses: ${counter}/6`;
+  document.querySelectorAll('.parts').forEach(part => part.style.display = 'none')
   letterDisplay()
   //wordsLetter.innerHTML = answer.split('').map(() => `<li class='letter'></li>`).join('');
 }
