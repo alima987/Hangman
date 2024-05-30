@@ -7,11 +7,18 @@ import legOne from '../public/legOne.svg';
 import legTwo from '../public/legTwo.svg';
 const hint = document.getElementById('hint');
 const reset = document.getElementById('reset');
-const words = document.getElementById('words');
+//const words = document.getElementById('words');
 const incorrect = document.getElementById('incorrect');
 const wordsLetter = document.getElementById('word_letter');
 const keyboard_container = document.getElementById('virtual_keyboard');
 const gallow = document.getElementById('gallow');
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const openModalBtn = document.querySelector(".btn-open");
+const closeModalBtn = document.querySelector(".btn-close");
+const message = document.querySelector(".message");
+const win = document.querySelector(".win");
+const lose = document.querySelector(".lose");
 let currWord
 let correctLetters = []
 let counter = 0
@@ -35,6 +42,7 @@ const createGallowParts = () => {
     img.src = part.src
     img.alt = `Part ${part.id}`
     img.id = 'parts'
+    img.style.display = 'none'
     gallow.appendChild(img)
   })
 }
@@ -56,6 +64,9 @@ const letterCheck = (letter, clickedLetter) => {
     counter++
     incorrectQuesses.innerHTML = `Incorrect guesses: ${counter}/6`
     displayGallowParts()
+    if(counter >= 6) {
+      modalOpen()
+    }
   }
   letterDisplay()
   console.log(currWord)
@@ -67,7 +78,7 @@ const letterDisplay = () => {
   : `<li class='letter'></li>`).join('')
 }
 const displayGallowParts = () => {
-  const parts = document.getElementById('parts');
+  const parts = document.querySelectorAll('#parts');
   parts.forEach((part, index) => {
     part.style.display = index < counter ? "block" : "none"
   })
@@ -93,9 +104,32 @@ for (let i = 0; i < keysLayout.length; i++) {
     keys.appendChild(letter)
     letter.addEventListener('click', e => letterCheck(e.target, keysLayout[i]))
 }
-const resetBtn = document.createElement('button')
-resetBtn.classList.add('resetBtn')
-resetBtn.textContent = 'Play Again'
-reset.appendChild(resetBtn)
+const winContent = () => {
+  const winText = document.createElement('p');
+  winText.classList.add('win_text')
+  winText.textContent = `Congratulations! You've won the game!/n Secret word: !`
+  win.appendChild(winText)
+  }
+  
+  const resetBtn = document.createElement('button')
+  resetBtn.classList.add('resetBtn')
+  resetBtn.textContent = 'Play Again'
+  reset.appendChild(resetBtn)
+  
+  const modalOpen = () => {
+      modal.classList.remove('hidden')
+      overlay.classList.remove('hidden')
+  }
+  const modalClose = () => {
+      modal.classList.add('hidden')
+      overlay.classList.add('hidden')
+  }
+  closeModalBtn.addEventListener('click', modalClose)
+  document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape' && (!modal.classList.contains('hidden'))) {
+          modalClose()
+      }
+  })
+
 
 randomizeWord()

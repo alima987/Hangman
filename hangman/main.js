@@ -21,8 +21,18 @@ const bodyStructure = () => {
 </div>
 <div id="virtual_keyboard">
 </div>
+<section class="modal hidden">
+<div class='flex'>
+<button class="btn-close">X</button>
+</div>
+<div class="message">
+<div class="win"></div>
+<div class="lose"></div>
 <div id="reset"></div>
 </div>
+</div>
+</section>
+<div class="overlay hidden"></div>
 </div>
   `;
   const root = document.createElement('div')
