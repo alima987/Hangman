@@ -39,6 +39,46 @@ const quizQuestions = [
         question: `What's the name of the river that runs through Egypt?`,
         answer: 'NILE'
     },
+    {
+        question: `Who was the Ancient Greek God of the Sun?`,
+        answer: 'APOLLO'
+    },
+    {
+        question: `What city is known as "The Eternal City"?`,
+        answer: 'ROME'
+    },
+    {
+        question: `In what country would you find Mount Kilimanjaro?`,
+        answer: 'TANZANIA'
+    },
+    {
+        question: `What is the only continent with land in all four hemispheres?`,
+        answer: 'AFRICA'
+    },
+    {
+        question: `What are diamonds made of?`,
+        answer: 'CARBON'
+    },
+    {
+        question: `What are the bones in your spine called?`,
+        answer: 'VERTEBRAE'
+    },
+    {
+        question: `Which is the hottest planet in our solar system?`,
+        answer: 'VENUS'
+    },
+    {
+        question: `Who is the Greek god of war and son of Zeus and Hera?`,
+        answer: 'ARES'
+    },
+    {
+        question: `Which European nation was said to invent hot dogs?`,
+        answer: 'GERMANY'
+    },
+    {
+        question: `What kind of cells are found in the brain?`,
+        answer: 'NEURONS'
+    },
 ]
 export { quizQuestions }
 

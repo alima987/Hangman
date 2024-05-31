@@ -78,7 +78,7 @@ body {
 }
 
 .key:hover {
-  background-color: #535bf2; /* Изменение цвета кнопки при наведении */
+  background-color: #535bf2; 
 }
 
 #virtual_keyboard .keys {
