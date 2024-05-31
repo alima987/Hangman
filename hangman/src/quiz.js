@@ -35,7 +35,7 @@ const gallowParts = [
   { id: 'legOne', src: legOne },
   { id: 'legTwo', src: legTwo }
 ];
-console.log(gallowParts)
+
 const createGallowParts = () => {
   gallowParts.forEach((part) => {
     const img = document.createElement('img');
@@ -97,14 +97,18 @@ const randomizeWord = () => {
   document.querySelectorAll('.parts').forEach(part => part.style.display = 'none')
   letterDisplay()
 }
-
+document.addEventListener('keydown', (e) => {
+  if(/^[a-zA-Z]$/.test(e.key)) {
+    letterCheck(e.key.toUpperCase(), e.key.toUpperCase());
+  }
+})
 for (let i = 0; i < keysLayout.length; i++) {
     const letter = document.createElement('li')
     letter.classList.add('key')
     letter.innerHTML = keysLayout[i]
     keyboard_container.appendChild(keys)
     keys.appendChild(letter)
-    letter.addEventListener('click', e => letterCheck(e.target, keysLayout[i]))
+    letter.addEventListener('click', e => letterCheck(e.target.textContent, e.target.textContent))
 }
 const winCheck = () => {
   if(currWord.split('').every(letter => correctLetters.includes(letter))) {
@@ -124,11 +128,22 @@ const winContent = () => {
     loseText.textContent = `Sorry! You've lost the game! The correct word was: ${currWord}.`;
     lose.appendChild(loseText);
   };
-  
+  const resetGame = () => {
+    currWord = ''
+    correctLetters = []
+    counter = 0
+    win.innerHTML = ''
+    lose.innerHTML = ''
+    modalClose()
+    const parts = document.querySelectorAll('#parts');
+    parts.forEach(part => part.style.display = 'none')
+    randomizeWord()
+  }
   const resetBtn = document.createElement('button')
   resetBtn.classList.add('resetBtn')
   resetBtn.textContent = 'Play Again'
   reset.appendChild(resetBtn)
+  resetBtn.addEventListener('click', resetGame)
   
   const modalOpen = () => {
       modal.classList.remove('hidden')
