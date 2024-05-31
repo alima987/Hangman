@@ -58,7 +58,10 @@ const letterCheck = (letter, clickedLetter) => {
   if(currWord.includes(clickedLetter)) {
     console.log(clickedLetter, 'letter is existed')
     correctLetters.push(clickedLetter)
-    console.log(correctLetters)
+    console.log("correctLetters", correctLetters)
+    if(winCheck()) {
+      modalOpen()
+    }
   } else {
     console.log(clickedLetter, 'letter is not existed')
     counter++
@@ -69,7 +72,7 @@ const letterCheck = (letter, clickedLetter) => {
     }
   }
   letterDisplay()
-  console.log(currWord)
+  console.log("CurrWord", currWord)
 }
 
 const letterDisplay = () => {
@@ -93,7 +96,6 @@ const randomizeWord = () => {
   incorrectQuesses.innerHTML = `Incorrect guesses: ${counter}/6`;
   document.querySelectorAll('.parts').forEach(part => part.style.display = 'none')
   letterDisplay()
-  //wordsLetter.innerHTML = answer.split('').map(() => `<li class='letter'></li>`).join('');
 }
 
 for (let i = 0; i < keysLayout.length; i++) {
@@ -104,12 +106,24 @@ for (let i = 0; i < keysLayout.length; i++) {
     keys.appendChild(letter)
     letter.addEventListener('click', e => letterCheck(e.target, keysLayout[i]))
 }
+const winCheck = () => {
+  if(currWord.split('').every(letter => correctLetters.includes(letter))) {
+    return true
+  }
+  return false
+}
 const winContent = () => {
   const winText = document.createElement('p');
   winText.classList.add('win_text')
-  winText.textContent = `Congratulations! You've won the game!/n Secret word: !`
+  winText.textContent = `Congratulations! You've won the game! The Secret word: ${currWord}!`
   win.appendChild(winText)
   }
+  const loseContent = () => {
+    const loseText = document.createElement('p');
+    loseText.classList.add('lose_text');
+    loseText.textContent = `Sorry! You've lost the game! The correct word was: ${currWord}.`;
+    lose.appendChild(loseText);
+  };
   
   const resetBtn = document.createElement('button')
   resetBtn.classList.add('resetBtn')
@@ -119,6 +133,11 @@ const winContent = () => {
   const modalOpen = () => {
       modal.classList.remove('hidden')
       overlay.classList.remove('hidden')
+      if (winCheck()) {
+        winContent();
+      } else {
+        loseContent();
+      }
   }
   const modalClose = () => {
       modal.classList.add('hidden')
