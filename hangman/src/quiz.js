@@ -7,21 +7,20 @@ import legOne from '../public/legOne.svg';
 import legTwo from '../public/legTwo.svg';
 const hint = document.getElementById('hint');
 const reset = document.getElementById('reset');
-//const words = document.getElementById('words');
 const incorrect = document.getElementById('incorrect');
 const wordsLetter = document.getElementById('word_letter');
 const keyboard_container = document.getElementById('virtual_keyboard');
 const gallow = document.getElementById('gallow');
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
-const openModalBtn = document.querySelector(".btn-open");
-const closeModalBtn = document.querySelector(".btn-close");
 const message = document.querySelector(".message");
 const win = document.querySelector(".win");
 const lose = document.querySelector(".lose");
 let currWord
 let correctLetters = []
 let counter = 0
+let hasWon = false;
+let hasLost = false;
 const keysLayout = [
     'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
     'A','S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 
@@ -54,7 +53,7 @@ const incorrectQuesses = document.createElement('p');
 incorrectQuesses.classList.add('incorrect_quesses')
 incorrect.appendChild(incorrectQuesses)  
 
-const letterCheck = (letter, clickedLetter) => {
+const letterCheck = (clickedLetter) => {
   if(currWord.includes(clickedLetter)) {
     console.log(clickedLetter, 'letter is existed')
     correctLetters.push(clickedLetter)
@@ -72,6 +71,10 @@ const letterCheck = (letter, clickedLetter) => {
     }
   }
   letterDisplay()
+  const clickedKey = document.querySelector(`.key[data-letter='${clickedLetter}']`)
+  if(clickedKey) {
+    clickedKey.classList.add('disabled')
+  }
   console.log("CurrWord", currWord)
 }
 
@@ -105,11 +108,16 @@ document.addEventListener('keydown', (e) => {
 for (let i = 0; i < keysLayout.length; i++) {
     const letter = document.createElement('li')
     letter.classList.add('key')
+    letter.dataset.letter = keysLayout[i]
     letter.innerHTML = keysLayout[i]
     keyboard_container.appendChild(keys)
     keys.appendChild(letter)
-    letter.addEventListener('click', e => letterCheck(e.target.textContent, e.target.textContent))
-}
+    letter.addEventListener('click', (e) => {
+      letterCheck(e.target.textContent, e.target.textContent);
+      e.target.classList.add('disabled')
+});
+    }
+
 const winCheck = () => {
   if(currWord.split('').every(letter => correctLetters.includes(letter))) {
     return true
@@ -117,16 +125,22 @@ const winCheck = () => {
   return false
 }
 const winContent = () => {
-  const winText = document.createElement('p');
-  winText.classList.add('win_text')
-  winText.textContent = `Congratulations! You've won the game! The Secret word: ${currWord}!`
-  win.appendChild(winText)
+  if(!hasWon) {
+    const winText = document.createElement('p');
+    winText.classList.add('win_text')
+    winText.innerHTML = `Congratulations! You've won the game!<br>The Secret word: ${currWord}!`
+    win.appendChild(winText)
+    hasWon = true
+  }
   }
   const loseContent = () => {
-    const loseText = document.createElement('p');
-    loseText.classList.add('lose_text');
-    loseText.textContent = `Sorry! You've lost the game! The correct word was: ${currWord}.`;
-    lose.appendChild(loseText);
+    if(!hasLost) {
+      const loseText = document.createElement('p');
+      loseText.classList.add('lose_text');
+      loseText.innerHTML = `Sorry! You've lost the game!<br>The Secret word: ${currWord}!`;
+      lose.appendChild(loseText);
+      hasLost = true
+    }
   };
   const resetGame = () => {
     currWord = ''
@@ -134,10 +148,14 @@ const winContent = () => {
     counter = 0
     win.innerHTML = ''
     lose.innerHTML = ''
+    hasWon = false; 
+    hasLost = false;
     modalClose()
     const parts = document.querySelectorAll('#parts');
     parts.forEach(part => part.style.display = 'none')
     randomizeWord()
+    const keys = document.querySelectorAll('.key');
+    keys.forEach((key) => key.classList.remove('disabled'));
   }
   const resetBtn = document.createElement('button')
   resetBtn.classList.add('resetBtn')
@@ -158,7 +176,6 @@ const winContent = () => {
       modal.classList.add('hidden')
       overlay.classList.add('hidden')
   }
-  closeModalBtn.addEventListener('click', modalClose)
   document.addEventListener('keydown', (e) => {
       if(e.key === 'Escape' && (!modal.classList.contains('hidden'))) {
           modalClose()

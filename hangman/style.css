@@ -1,17 +1,3 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 * {
   margin: 0;
   padding: 0;
@@ -28,22 +14,31 @@ a:hover {
 }
 
 body {
+  font-family: 'Roboto', sans-serif; 
+  background-color: #f0f0f0;
   max-width: 1440px;
   margin: 0;
-  
+  background: url(public/hand-painted-watercolor-pastel-sky-background_23-2148902771.avif) no-repeat;
+  background-size: cover;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.title_game {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 .container {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  align-content: center;
   justify-content: center;
-  padding: 2rem;
+  max-width: 100%; 
+  padding: 2rem 1rem;
+  margin: 8rem 10rem;
+  background-color: #fff; 
+  border-radius: 10px; 
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); 
 }
 #word_letter {
   display: flex;
@@ -51,18 +46,52 @@ h1 {
   gap:10px;
 }
 #word_letter .letter {
-  width: 29px;
+  width: 30px;
   border-bottom: 3px solid black;
+  text-align: center;
 }
+.letter {
+  font-size: 1.1em;
+  height: 30px; 
+}
+.keys {
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 10px; 
+}
+.incorrect_quesses {
+  font-size: 1.2em;
+  font-style: italic;
+}
+.key {
+  height: 40px;
+  border-radius: 5px;
+  background-color: #78e19a;
+  color: #fff;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.key:hover {
+  background-color: #535bf2; /* Изменение цвета кнопки при наведении */
+}
+
 #virtual_keyboard .keys {
   display: flex;
   list-style: none;
   gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 .keys .key {
-    width: calc(100% / 11 - 5px);
+    width: calc(100% / 11 - 9px);
 }
 .question {
   margin-bottom: 50px;
@@ -70,13 +99,19 @@ h1 {
 #words{
   margin-bottom: 50px;
 }
-#hint{
-  margin-bottom: 50px;
+#hint {
+  width: 31rem;
+  font-size: 1.3em;
+  margin-bottom: 24px;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
 }
 #incorrect {
   margin-bottom: 50px;
 }
 #gallow {
+  width: 359px;
   position: relative;
 }
 #parts {
@@ -85,30 +120,38 @@ h1 {
 }
 #parts:nth-child(7) { 
   top: 409px;
-  left: 67%;
+  left: 239px;
 }
 #parts:nth-child(8) { 
   top: 409px;
-  left: 85%;
+  left: 304px;
 }
 #parts:nth-child(3) { 
   top: 184px;
-  left: 71%;
+  left: 254px;
 }
 
 #parts:nth-child(4) {
   top: 281px;
-  left: 85%;
+  left: 303px;
 }
 
 #parts:nth-child(5) { 
   top: 320px;
-  left: 67%;
+  left: 239px;
 }
 
 #parts:nth-child(6) { 
   top: 320px;
-  left: 85%;
+  left: 304px;
+}
+.quiz {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
 }
 .modal {
   display: flex;
@@ -120,10 +163,13 @@ h1 {
   min-height: 250px;
   position: absolute;
   top: 20%;
-  background-color: white;
+  align-items: center;
   border: 1px solid #ddd;
   border-radius: 15px;
   z-index: 2;
+  background: linear-gradient(134deg, #000000, #f0f0f0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 .hidden {
   display: none;
@@ -141,9 +187,11 @@ h1 {
   font-size: 0.9em;
 }
 .modal p {
-  font-size: 0.9rem;
-  color: #777;
+  font-size: 1.2em;
+  color: #fff;
   margin: 0.4rem 0 0.2rem;
+  transition: opacity 0.3s ease;
+  margin-bottom: 30px;
 }
 
 button {
@@ -156,23 +204,34 @@ button {
   display: inline-block;
   padding: 0.8rem 1.4rem;
   font-weight: 700;
-  background-color: black;
-  color: white;
   border-radius: 5px;
   text-align: center;
   font-size: 1em;
+  background-color: #646cff; 
+  color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-
+.btn:hover {
+  background-color: #535bf2; 
+}
 .btn-open {
   position: absolute;
   bottom: 150px;
 }
-
+.message {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
 .btn-close {
-  transform: translate(10px, -20px);
-  padding: 0.5rem 0.7rem;
-  background: #eee;
-  border-radius: 50%;
+  position: absolute;
+  top: 19px;
+  right: 16px;
+  background-color: transparent;
+  border: none;
+  color: #f0f0f0;
+  font-size: 1.2em;
+  cursor: pointer;
 }
 .overlay {
   position: fixed;
@@ -186,6 +245,11 @@ button {
   backdrop-filter: blur(3px);
   z-index: 1;
 }
+.disabled {
+  opacity: 0.5;
+  pointer-events: none; 
+  cursor: not-allowed;
+}
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -193,7 +257,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #fff;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -205,15 +269,122 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+
+@media (min-width: 767px) and (max-width: 1439px) {
+  .container {
+    padding: 2rem;
+    margin: 7rem;
+}
+  .title_game {
+    font-size: 1.5em; 
   }
-  a:hover {
-    color: #747bff;
+  .hangman {
+    width: 220px;
+}
+#gallow {
+  margin-bottom: 20px;
+}
+#word_letter .letter {
+  font-size: 1em;
+  width: 26px;
+
+}
+#parts:nth-child(3) {
+  width: 57px;
+  top: 140px;
+  left: 160px;
+}
+#parts:nth-child(4) {
+  width: 4px;
+  top: 194px;
+  left: 187px;
+}
+#parts:nth-child(5) {
+  width: 50px;
+  top: 222px;
+  left: 140px;
+}
+#parts:nth-child(6) {
+  width: 50px;
+  top: 221px;
+  left: 187px;
+}
+#parts:nth-child(7) {
+  width: 57px;
+  top: 296px;
+  left: 133px;
+}
+#parts:nth-child(8) {
+  width: 57px;
+  top: 296px;
+  left: 188px;
+}
+}
+
+@media (min-width: 359px) and (max-width: 767px){
+  .container {
+    margin: 2rem; 
+    padding: 1rem;
   }
-  button {
-    background-color: #f9f9f9;
+  .title_game {
+    font-size: 1.3em; 
   }
+  .hangman {
+    width: 130px;
+  }
+  #word_letter .letter {
+    font-size: 0.8em;
+    width: 12px; 
+  }
+  .keys .key {
+    font-size: 0.7em;
+    width: calc(100% / 8 - 13px);
+    height: 20px;
+  }
+  .incorrect_quesses {
+    font-size: 0.9em;
+}
+  #hint {
+    width: 15rem;
+    font-size: 1em; 
+  }
+  #parts:nth-child(3) {
+    width: 27px;
+    top: 99px;
+    left: 99px;
+}
+#parts:nth-child(4) {
+  width: 2px;
+  top: 126px;
+  left: 111px;
+}
+#parts:nth-child(5) {
+  width: 27px;
+  top: 137px;
+  left: 85px;
+}
+#parts:nth-child(6) {
+  width: 27px;
+  top: 137px;
+  left: 112px;
+}
+#parts:nth-child(7) {
+  width: 33px;
+  top: 176px;
+  left: 80px;
+}
+#parts:nth-child(8) {
+  width: 33px;
+  top: 176px;
+  left: 111px;
+}
+.modal {
+  width: 294px;
+  padding: 1rem;
+  min-height: 200px;
+}
+.modal p {
+  font-size: 1em;
+  margin-bottom: 15px;
+}
 }

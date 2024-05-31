@@ -3,12 +3,12 @@ import gallows from './public/gallows.svg';
 
 const bodyStructure = () => {
   const html = `
-  <header class="header">
-  </header>
-  <div class="container">
+<header class="header">
+</header>
+<div class="container">
 <div id="gallow">
-<h2>Hangman Game</h2>
-<img src="${gallows}" alt="gallow">
+<h2 class="title_game">Hangman Game</h2>
+<img class='hangman' src="${gallows}" alt="gallow">
 </div>
 <div class="quiz">
 <div id="hint">
@@ -23,7 +23,6 @@ const bodyStructure = () => {
 </div>
 <section class="modal hidden">
 <div class='flex'>
-<button class="btn-close">X</button>
 </div>
 <div class="message">
 <div class="win"></div>

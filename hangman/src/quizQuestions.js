@@ -44,27 +44,4 @@ export { quizQuestions }
 
 
 
-/*const updateLetters = (answer) => {
-    const answerLength = answer.length;
-    wordsLetter.innerHTML = '';
-
-    for (let i = 0; i < answerLength; i++) {
-        const li = document.createElement('li');
-        li.classList.add('letter');
-        wordsLetter.appendChild(li);
-    }
-};*/
-
-/*const changeQuestion = () => {
-    index++
-    //index += quizQuestions.length
-    index = (index + 1) % quizQuestions.length; 
-    question.innerHTML = quizQuestions[index].question
-    updateLetters(quizQuestions[index].answer);
-}*/
-
-//resetBtn.addEventListener('click', changeQuestion)
-//question.innerHTML = quizQuestions[0].question;
-//updateLetters(quizQuestions[0].answer)
-
 
